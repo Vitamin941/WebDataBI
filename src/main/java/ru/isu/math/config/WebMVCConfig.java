@@ -13,7 +13,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
-@ComponentScan(basePackages = "ru.isu.math.controllers")
+@ComponentScan(basePackages = "ru.isu.math")
 @EnableWebMvc
 @Configuration
 public class WebMVCConfig implements WebMvcConfigurer {
