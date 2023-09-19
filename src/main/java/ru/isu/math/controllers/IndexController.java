@@ -3,25 +3,23 @@ package ru.isu.math.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.isu.math.dao.JdbcTemplateTest;
-import ru.isu.math.repositories.ModelTestRepository;
+import org.springframework.web.bind.annotation.RestController;
+import ru.isu.math.dao.ModelDAOImpl;
+import ru.isu.math.model.Model;
 
-@Controller
+@RestController
 public class IndexController {
 
-//    public ModelTestRepository testRepository;
-
-    public final JdbcTemplateTest jdbcTemplateTest;
+    public final ModelDAOImpl modelDAOImpl;
 
     @Autowired
-    IndexController(JdbcTemplateTest jdbcTemplateTest) {
-//        this.testRepository = testRepository;
-        this.jdbcTemplateTest = jdbcTemplateTest;
+    IndexController(ModelDAOImpl modelDAOImpl) {
+        this.modelDAOImpl = modelDAOImpl;
     }
 
     @GetMapping
     public String loadIndex() {
-        jdbcTemplateTest.test();
-        return "index";
+        Model testOne = modelDAOImpl.get(1);
+        return testOne.toString();
     }
 }
