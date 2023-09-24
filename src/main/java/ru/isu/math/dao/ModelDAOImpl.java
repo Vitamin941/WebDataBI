@@ -2,6 +2,7 @@ package ru.isu.math.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.isu.math.model.MyModel;
 import javax.sql.DataSource;
@@ -9,6 +10,13 @@ import java.util.List;
 
 @Repository
 public class ModelDAOImpl implements ModelDao {
+
+    private final RowMapper<MyModel> myModelRowMapper = (resultSet, rowNum) -> {
+        MyModel actor = new MyModel();
+        actor.setId(resultSet.getInt("id"));
+        actor.setText(resultSet.getString("text"));
+        return actor;
+    };
 
     public JdbcTemplate jdbcTemplate;
 
@@ -23,25 +31,16 @@ public class ModelDAOImpl implements ModelDao {
     @Override
     public MyModel get(long id) {
         return jdbcTemplate.queryForObject(
-                "select * from test where id = ?",
-                (resultSet, rowNum) -> {
-                    MyModel newMyModel = new MyModel();
-                    newMyModel.setText(resultSet.getString("text"));
-                    return newMyModel;
-                },
+                "SELECT * FROM test WHERE id = ?",
+                myModelRowMapper,
                 id);
     }
 
     @Override
     public List<MyModel> getAll() {
         return jdbcTemplate.query(
-                "select * from test",
-                ((resultSet, rowNum) -> {
-                    MyModel newMyModel = new MyModel();
-                    newMyModel.setText(resultSet.getString("text"));
-                    return newMyModel;
-                })
-        );
+                "SELECT * FROM test ORDER BY id ASC",
+                myModelRowMapper);
     }
 
 //    @Override

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-dfhdhdghgd
+<table>
+    <tr>
+        <th>ID</th>
+        <th>TEXT</th>
+    </tr>
+    <tr th:each="model : ${models}">
+        <td th:text="${model.getId()}">ID</td>
+        <td th:text="${model.getText()}">TEXT</td>
+    </tr>
+</table>
 </body>
 </html>
