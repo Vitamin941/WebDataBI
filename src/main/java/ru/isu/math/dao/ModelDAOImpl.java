@@ -10,10 +10,13 @@ import java.util.List;
 @Repository
 public class ModelDAOImpl implements ModelDao {
 
-    public JdbcTemplate jdbcTemplate = new JdbcTemplate();
+    public JdbcTemplate jdbcTemplate;
+
+    public ModelDAOImpl() {}
 
     @Autowired
     public ModelDAOImpl(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource);
     }
 

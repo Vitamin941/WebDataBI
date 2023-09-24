@@ -14,7 +14,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJdbcRepositories(basePackages = "ru.isu.math")
+@EnableJdbcRepositories(basePackages = "ru.isu.math.dao")
+@ComponentScan(basePackages = "ru.isu.math.dao")
 public class SpringDataSource extends AbstractJdbcConfiguration {
 
     @Bean
