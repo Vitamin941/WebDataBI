@@ -3,11 +3,10 @@ package ru.isu.math.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import ru.isu.math.dao.ModelDAOImpl;
-import ru.isu.math.model.Model;
+import ru.isu.math.model.MyModel;
 
-@RestController
+@Controller
 public class IndexController {
 
     public final ModelDAOImpl modelDAOImpl;
@@ -19,7 +18,12 @@ public class IndexController {
 
     @GetMapping
     public String loadIndex() {
-        Model testOne = modelDAOImpl.get(1);
-        return testOne.toString();
+        MyModel testOne = modelDAOImpl.get(1);
+        return "index";
+    }
+
+    @GetMapping("/table")
+    public String loadTable() {
+        return "";
     }
 }

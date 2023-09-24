@@ -2,10 +2,10 @@ package ru.isu.math.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import ru.isu.math.model.Model;
+import ru.isu.math.model.MyModel;
 import javax.sql.DataSource;
+import java.util.List;
 
 @Repository
 public class ModelDAOImpl implements ModelDao {
@@ -18,22 +18,28 @@ public class ModelDAOImpl implements ModelDao {
     }
 
     @Override
-    public Model get(long id) {
-        Model model = jdbcTemplate.queryForObject(
+    public MyModel get(long id) {
+        return jdbcTemplate.queryForObject(
                 "select * from test where id = ?",
                 (resultSet, rowNum) -> {
-                    Model newModel = new Model();
-                    newModel.setText(resultSet.getString("text"));
-                    return newModel;
+                    MyModel newMyModel = new MyModel();
+                    newMyModel.setText(resultSet.getString("text"));
+                    return newMyModel;
                 },
                 id);
-        return model;
     }
 
-//    @Override
-//    public List<Model> getAll() {
-//        return null;
-//    }
+    @Override
+    public List<MyModel> getAll() {
+        return jdbcTemplate.query(
+                "select * from test",
+                ((resultSet, rowNum) -> {
+                    MyModel newMyModel = new MyModel();
+                    newMyModel.setText(resultSet.getString("text"));
+                    return newMyModel;
+                })
+        );
+    }
 
 //    @Override
 //    public boolean insert(Model model) {

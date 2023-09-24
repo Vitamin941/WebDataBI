@@ -1,13 +1,13 @@
 package ru.isu.math.dao;
 
-//import com.sun.tools.javac.util.List;
-import ru.isu.math.model.Model;
+import java.util.List;
+import ru.isu.math.model.MyModel;
 
 public interface ModelDao {
 
-    Model get(long id);
+    MyModel get(long id);
 
-//    List<Model> getAll();
+    List<MyModel> getAll();
 
 //    boolean insert(Model model);
 //
