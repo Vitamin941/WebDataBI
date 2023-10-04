@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<div id="draggable" class="ui-widget-content" onmousedown="mouseDown()" onmouseup="mouseUp()">
+    drag me
+</div>
 HI ALL
-<a href="/WebDataBI_war_exploded/table">dfhdhdgh</a>
+<a href="/table">dfhdhdgh</a>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script th:src="@{/js/dragblocks.js}"></script>
 </body>
 </html>
