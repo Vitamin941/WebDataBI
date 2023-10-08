@@ -4,42 +4,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import ru.isu.math.model.MyModel;
+import ru.isu.math.model.ArabData;
 import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-public class ModelDAOImpl implements ModelDao {
+public class ArabDataDAOImpl implements ArabDataDao {
 
-    private final RowMapper<MyModel> myModelRowMapper = (resultSet, rowNum) -> {
-        MyModel actor = new MyModel();
-        actor.setId(resultSet.getInt("id"));
-        actor.setText(resultSet.getString("text"));
-        return actor;
+    private final RowMapper<ArabData> myModelRowMapper = (resultSet, rowNum) -> {
+        ArabData arabData = new ArabData();
+        arabData.setId(resultSet.getInt("id"));
+        arabData.setRegion(resultSet.getString("region"));
+        arabData.setYear(resultSet.getInt("year"));
+        arabData.setGender(resultSet.getString("gender"));
+        arabData.setNationaly(resultSet.getString("nationaly"));
+        arabData.setPopulation(resultSet.getInt("population"));
+        return arabData;
     };
 
     public JdbcTemplate jdbcTemplate;
 
-    public ModelDAOImpl() {}
+    public ArabDataDAOImpl() {}
 
     @Autowired
-    public ModelDAOImpl(DataSource dataSource) {
+    public ArabDataDAOImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource);
     }
 
     @Override
-    public MyModel get(long id) {
+    public ArabData get(long id) {
         return jdbcTemplate.queryForObject(
-                "SELECT * FROM test WHERE id = ?",
+                "SELECT * FROM Arabia_population WHERE id = ?",
                 myModelRowMapper,
                 id);
     }
 
     @Override
-    public List<MyModel> getAll() {
+    public List<ArabData> getAll() {
         return jdbcTemplate.query(
-                "SELECT * FROM test ORDER BY id ASC",
+                "SELECT * FROM Arabia_population ORDER BY id ASC",
                 myModelRowMapper);
     }
 

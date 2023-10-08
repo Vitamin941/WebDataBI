@@ -1,13 +1,13 @@
 package ru.isu.math.dao;
 
 import java.util.List;
-import ru.isu.math.model.MyModel;
+import ru.isu.math.model.ArabData;
 
-public interface ModelDao {
+public interface ArabDataDao {
 
-    MyModel get(long id);
+    ArabData get(long id);
 
-    List<MyModel> getAll();
+    List<ArabData> getAll();
 
 //    boolean insert(Model model);
 //
