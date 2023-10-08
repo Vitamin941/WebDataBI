@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/static/css/style.css" th:href="@{/static/css/style.css}">
 </head>
 <body>
-<div id="draggable" class="ui-widget-content" onmousedown="mouseDown()" onmouseup="mouseUp()">
+<h1 class="text">TEXT</h1>
+<div class="draggable ui-widget-content" onmousedown="mouseDown()" onmouseup="mouseUp()">
     drag me
 </div>
 HI ALL
@@ -14,6 +15,6 @@ HI ALL
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script th:src="@{/js/dragblocks.js}"></script>
+<script th:src="@{/static/js/dragblocks.js}" src="js/dragblocks.js"></script>
 </body>
 </html>
